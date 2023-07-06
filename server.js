@@ -39,12 +39,6 @@ const startPrompt = () => {
                   'Add a role', 
                   'Add an employee', 
                   'Update an employee role',
-                  'Update an employee manager',
-                  "View employees by department",
-                  'Delete a department',
-                  'Delete a role',
-                  'Delete an employee',
-                  'View department budgets',
                   'No Action']
       }
     ])
@@ -52,11 +46,11 @@ const startPrompt = () => {
         const { choices } = answers; 
   
         if (choices === "View all departments") {
-          showDepartments();
+          viewDepartments();
         }
   
         if (choices === "View all roles") {
-          showRoles();
+          viewRoles();
         }
   
         if (choices === "View all employees") {
@@ -79,32 +73,62 @@ const startPrompt = () => {
           updateEmployee();
         }
   
-        if (choices === "Update an employee manager") {
-          updateManager();
-        }
-  
-        if (choices === "View employees by department") {
-          employeeDepartment();
-        }
-  
-        if (choices === "Delete a department") {
-          deleteDepartment();
-        }
-  
-        if (choices === "Delete a role") {
-          deleteRole();
-        }
-  
-        if (choices === "Delete an employee") {
-          deleteEmployee();
-        }
-  
-        if (choices === "View department budgets") {
-          viewBudget();
-        }
-  
         if (choices === "No Action") {
           connection.end()
       };
     });
   };
+
+ 
+// Function to view all departments
+const viewDepartments = () => {
+  console.log('Showing all departments...\n');
+  const sql = `SELECT * FROM department`;
+  connection.getConnection((err, connection) => {
+    if (err) {
+      console.error('Error connecting to the database: ', err);
+      return;
+    }
+    connection.query(sql, (err, rows) => {
+      connection.release(); // Release the connection
+
+      if (err) {
+        console.error('Error executing the query: ', err);
+        return;
+      }
+
+      console.table(rows); // Display the departments
+
+      startPrompt();
+    });
+  });
+};
+
+
+// Function to view all roles
+const viewRoles = () => {
+  console.log('Showing all roles...\n');
+  const sql = `SELECT * FROM role`;
+
+  connection.getConnection((err, connection) => {
+    if (err) {
+      console.error('Error connecting to the database: ', err);
+      return;
+    }
+
+    connection.query(sql, (err, rows) => {
+      connection.release(); // Release the connection
+
+      if (err) {
+        console.error('Error executing the query: ', err);
+        return;
+      }
+
+      console.table(rows); // Display the roles
+
+      // Continue with the program flow or perform any desired action
+
+      startPrompt();
+    });
+  });
+};
