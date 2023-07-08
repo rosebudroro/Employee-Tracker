@@ -188,7 +188,6 @@ function addDepartment() {
 }
 
 //   function to add role
-
 function addRole() {
   inquirer
     .prompt([
@@ -219,7 +218,6 @@ function addRole() {
 }
 
 //   function add employee
-
 function addEmployee() {
   inquirer
     .prompt([
@@ -254,3 +252,5 @@ function addEmployee() {
       );
     });
 }
+
+// function to update employee
