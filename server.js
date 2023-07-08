@@ -86,52 +86,34 @@ const startPrompt = () => {
 const viewDepartments = () => {
   console.log("Showing all departments...\n");
   const sql = `SELECT * FROM department`;
-  connection.getConnection((err, connection) => {
-    if (err) {
-      console.error("Error connecting to the database: ", err);
-      return;
-    }
     connection.query(sql, (err, rows) => {
-      connection.release(); // Release the connection
 
       if (err) {
         console.error("Error executing the query: ", err);
         return;
       }
 
-      console.table(rows); // Display the departments
+      console.table(rows);
 
       startPrompt();
     });
-  });
 };
 
 // Function to view all roles
 const viewRoles = () => {
   console.log("Showing all roles...\n");
   const sql = `SELECT * FROM role`;
-
-  connection.getConnection((err, connection) => {
-    if (err) {
-      console.error("Error connecting to the database: ", err);
-      return;
-    }
-
     connection.query(sql, (err, rows) => {
-      connection.release(); // Release the connection
 
       if (err) {
         console.error("Error executing the query: ", err);
         return;
       }
 
-      console.table(rows); // Display the roles
-
-      // Continue with the program flow or perform any desired action
+      console.table(rows); 
 
       startPrompt();
     });
-  });
 };
 
 // Function to view all employees
@@ -139,30 +121,20 @@ const viewEmployees = () => {
   console.log("Showing all employees...\n");
   const sql = `SELECT * FROM employee`;
 
-  connection.getConnection((err, connection) => {
-    if (err) {
-      console.error("Error connecting to the database: ", err);
-      return;
-    }
-
     connection.query(sql, (err, rows) => {
-      connection.release(); // Release the connection
 
       if (err) {
         console.error("Error executing the query: ", err);
         return;
       }
 
-      console.table(rows); // Display the roles
-
-      // Continue with the program flow or perform any desired action
+      console.table(rows); 
 
       startPrompt();
     });
-  });
 };
 
-// Function to add department
+
 function addDepartment() {
   inquirer
     .prompt([
@@ -187,7 +159,6 @@ function addDepartment() {
     });
 }
 
-//   function to add role
 function addRole() {
   inquirer
     .prompt([
@@ -217,7 +188,6 @@ function addRole() {
     });
 }
 
-//   function add employee
 function addEmployee() {
   inquirer
     .prompt([
