@@ -178,6 +178,7 @@ function addRole() {
         "INSERT INTO role SET ? ",
         {
           name: res.name,
+          salary: res.salary
         },
         function (err) {
           if (err) throw err;
@@ -212,7 +213,10 @@ function addEmployee() {
       var query = connection.query(
         "INSERT INTO employee SET ? ",
         {
-          name: res.name,
+          first_name: res.name,
+          last_name: res.lastName,
+          role_id: parseInt(res.role_id),
+          manager_id: null,
         },
         function (err) {
           if (err) throw err;
