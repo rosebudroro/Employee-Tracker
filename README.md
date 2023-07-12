@@ -2,7 +2,7 @@
 
 ## Description
 
-For this assignment, I had to build a command-line application from scratch to manage a companuy's employee database using Node.js, Inquirer and MySQL
+For this assignment, I had to build a command-line application from scratch to manage a company's employee database using Node.js, Inquirer and MySQL
 
 
 ## Table of Contents (Optional)
